@@ -19,7 +19,7 @@ import * as knnClassifier from '@tensorflow-models/knn-classifier';
 
 // Number of classes to classify
 const NUM_CLASSES = 3;
-// Webcam Image size. Must be 227. 
+// Webcam Image size. Must be 227.
 const IMAGE_SIZE = 227;
 // K value for KNN
 const TOPK = 10;
@@ -31,6 +31,7 @@ class Main {
     this.infoTexts = [];
     this.training = -1; // -1 when no class is being trained
     this.videoPlaying = false;
+    this.outputTest = [];
 
     // Initiate deeplearn.js math and knn classifier objects
     this.bindPage();
@@ -43,15 +44,16 @@ class Main {
     // Add video element to DOM
     document.body.appendChild(this.video);
 
-    // Create training buttons and info texts    
+    // Create training buttons and info texts
     for (let i = 0; i < NUM_CLASSES; i++) {
       const div = document.createElement('div');
+
       document.body.appendChild(div);
       div.style.marginBottom = '10px';
 
       // Create training button
       const button = document.createElement('button')
-      button.innerText = "Train " + i;
+      button.innerText = "학습시키기 " + i;
       div.appendChild(button);
 
       // Listen for mouse events when clicking the button
@@ -60,9 +62,22 @@ class Main {
 
       // Create info text
       const infoText = document.createElement('span')
-      infoText.innerText = " No examples added";
+      infoText.innerText = " 아무 것도 학습되지 않았습니다.";
       div.appendChild(infoText);
       this.infoTexts.push(infoText);
+
+      // Reset button
+      const reset = document.createElement('button')
+      reset.innerText = i + "번 학습 데이터 리셋"
+      div.appendChild(reset);
+      reset.addEventListener('mousedown', () => this.knn.clearClass(i));
+
+      // Create Output Test Text
+      const test = document.createElement('span');
+      test.innerText = "OUTPUT " + i;
+      div.appendChild(test);
+      test.style.visibility = 'hidden'
+      this.outputTest.push(test);
     }
 
 
@@ -136,7 +151,15 @@ class Main {
 
           // Update info text
           if (exampleCount[i] > 0) {
-            this.infoTexts[i].innerText = ` ${exampleCount[i]} examples - ${res.confidences[i] * 100}%`
+            this.infoTexts[i].innerText = ` ${exampleCount[i]}개의 데이터를 학습함 - ${res.confidences[i] * 100}%`
+          } else{
+            this.infoTexts[i].innerText =  " 아무 것도 학습되지 않았습니다."
+          }
+
+          if (res.confidences[i] * 100 >= 90){
+            this.outputTest[i].style.visibility = 'visible';
+          } else{
+            this.outputTest[i].style.visibility = 'hidden';
           }
         }
       }
