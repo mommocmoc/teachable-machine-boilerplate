@@ -20,12 +20,17 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/index.html')
 })
 
+//socket event
 io.on('connection',function(socket) {
   console.log('a user connected');
+  //socket client connected
   socket.emit('connected')
+  //according to confidence output.output number is changed. The number means the confidence of n-th class is greater than 90%
   socket.on('output',(output)=>{
     console.log(output.id);
     console.log(output.output);
+    //control the 'output' event timing using setTimeout()
+    //TODO. Serial Communication with microbit
     setTimeout(()=> {socket.emit('recieved', output.output)} , 5000);
   })
 })
