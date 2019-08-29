@@ -52,5 +52,8 @@ https is required to get camera permissions to work when not working with localh
 openssl genrsa -out server.key 2048
 openssl req -new -x509 -sha256 -key server.key -out server.cer -days 365 -subj /CN=YOUR_IP
 ```
-2. Use `npm test-https`
-3. Go to `https://YOUR_IP:3000`
+2. Change 28 line of main.js to const WEB_ADDRESS = 'https://YOUR_IP:3000'
+
+3. Use `npm run server`
+
+4. Go to `https://YOUR_IP:3000`

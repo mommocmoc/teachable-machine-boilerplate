@@ -24,6 +24,8 @@ const IMAGE_SIZE = 227;
 // K value for KNN
 const TOPK = 10;
 
+//Address : 수업시 수정
+const WEB_ADDRESS = 'https://192.168.0.4:3000'
 
 class Main {
   constructor() {
@@ -32,45 +34,62 @@ class Main {
     this.training = -1; // -1 when no class is being trained
     this.videoPlaying = false;
     this.outputTest = [];
+    this.counter = [0,0,0];
+    this.eventEmitted = [false, false, false];
 
     // Initiate deeplearn.js math and knn classifier objects
     this.bindPage();
 
+    // SocketIO
+    this.socket = io.connect(WEB_ADDRESS)
+    this.socket.on('connected', ()=>{
+      console.log('Socket Connected');
+    })
+    this.socket.on('recieved', (id)=>{
+      console.log('Event Submitted');
+
+      this.eventEmitted[id] = false;
+    })
     // Create video element that will contain the webcam image
     this.video = document.createElement('video');
     this.video.setAttribute('autoplay', '');
     this.video.setAttribute('playsinline', '');
+    this.video.classList.add("container");
 
+    //create jumbotron
+    this.jumbo = document.createElement('div');
+    this.jumbo.classList.add("jumbotron", "container", "row", "justify-content-center");
     // Add video element to DOM
-    document.body.appendChild(this.video);
+    document.body.appendChild(this.jumbo);
+    this.jumbo.appendChild(this.video);
 
     // Create training buttons and info texts
     for (let i = 0; i < NUM_CLASSES; i++) {
       const div = document.createElement('div');
 
-      document.body.appendChild(div);
+      this.jumbo.appendChild(div);
       div.style.marginBottom = '10px';
+      div.classList.add("container", "col-4", "col-4");
 
       // Create training button
       const button = document.createElement('button')
       button.innerText = "학습시키기 " + i;
+      button.classList.add("btn", "btn-primary", "btn-block")
       div.appendChild(button);
 
       // Listen for mouse events when clicking the button
       button.addEventListener('mousedown', () => this.training = i);
       button.addEventListener('mouseup', () => this.training = -1);
-
+      button.addEventListener('touchstart', () => this.training = i);
+      button.addEventListener('touchend', () => this.training = -1);
       // Create info text
-      const infoText = document.createElement('span')
+      const infoText = document.createElement('h5')
       infoText.innerText = " 아무 것도 학습되지 않았습니다.";
+      infoText.classList.add("text-center","info")
       div.appendChild(infoText);
       this.infoTexts.push(infoText);
 
-      // Reset button
-      const reset = document.createElement('button')
-      reset.innerText = i + "번 학습 데이터 리셋"
-      div.appendChild(reset);
-      reset.addEventListener('mousedown', () => this.knn.clearClass(i));
+
 
       // Create Output Test Text
       const test = document.createElement('span');
@@ -79,10 +98,22 @@ class Main {
       test.style.visibility = 'hidden'
       this.outputTest.push(test);
     }
+    // Reset button
+    const reset = document.createElement('button')
+    reset.innerText = "학습 데이터 리셋"
+    this.jumbo.appendChild(reset);
+    reset.addEventListener('mousedown', () => {
+          this.knn.clearAllClasses();
+          this.counter = [0,0,0];
+      } );
+    reset.classList.add("btn", "btn-danger", "btn-block")
 
 
     // Setup webcam
-    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: false
+      })
       .then((stream) => {
         this.video.srcObject = stream;
         this.video.width = IMAGE_SIZE;
@@ -128,6 +159,7 @@ class Main {
 
         // Add current image to classifier
         this.knn.addExample(logits, this.training)
+        this.counter[this.training] ++;
       }
 
       const numClasses = this.knn.getNumClasses();
@@ -152,13 +184,17 @@ class Main {
           // Update info text
           if (exampleCount[i] > 0) {
             this.infoTexts[i].innerText = ` ${exampleCount[i]}개의 데이터를 학습함 - ${res.confidences[i] * 100}%`
-          } else{
-            this.infoTexts[i].innerText =  " 아무 것도 학습되지 않았습니다."
+          } else {
+            this.infoTexts[i].innerText = " 아무 것도 학습되지 않았습니다."
           }
 
-          if (res.confidences[i] * 100 >= 90){
+          if (res.confidences[i] * 100 >= 90) {
             this.outputTest[i].style.visibility = 'visible';
-          } else{
+            if(!this.eventEmitted[i]){
+                setImmediate(()=>{this.socket.emit('output',{id:this.socket.id,output : i})},5000);
+                this.eventEmitted[i] = true;
+            }
+          } else {
             this.outputTest[i].style.visibility = 'hidden';
           }
         }
