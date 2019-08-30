@@ -16,6 +16,7 @@ import "@babel/polyfill";
 import * as mobilenetModule from '@tensorflow-models/mobilenet';
 import * as tf from '@tensorflow/tfjs';
 import * as knnClassifier from '@tensorflow-models/knn-classifier';
+import * as internalip from 'internal-ip';
 
 // Number of classes to classify
 const NUM_CLASSES = 3;
@@ -25,7 +26,7 @@ const IMAGE_SIZE = 227;
 const TOPK = 10;
 
 //Address : 수업시 수정
-const WEB_ADDRESS = 'https://192.168.0.4:3000'
+const WEB_ADDRESS = 'https://192.168.0.39:3000'
 
 class Main {
   constructor() {

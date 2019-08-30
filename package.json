@@ -10,6 +10,7 @@
     "bootstrap": "^4.3.1",
     "browserify-middleware": "^8.1.1",
     "express": "^4.17.1",
+    "internal-ip": "^4.3.0",
     "ip": "^1.1.5",
     "openssl": "^1.1.0",
     "serialport": "^7.1.5",

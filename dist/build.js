@@ -55,7 +55,6 @@ var Main = function () {
     this.training = -1; // -1 when no class is being trained
     this.videoPlaying = false;
     this.outputTest = [];
-    this.counter = [0, 0, 0];
     this.eventEmitted = [false, false, false];
 
     // Initiate deeplearn.js math and knn classifier objects
@@ -136,7 +135,6 @@ var Main = function () {
     this.jumbo.appendChild(reset);
     reset.addEventListener('mousedown', function () {
       _this.knn.clearAllClasses();
-      _this.counter = [0, 0, 0];
     });
     reset.classList.add("btn", "btn-danger", "btn-block");
 
@@ -230,7 +228,6 @@ var Main = function () {
 
                 // Add current image to classifier
                 this.knn.addExample(logits, this.training);
-                this.counter[this.training]++;
               }
 
               numClasses = this.knn.getNumClasses();
@@ -267,12 +264,13 @@ var Main = function () {
                   _this2.infoTexts[i].innerText = " 아무 것도 학습되지 않았습니다.";
                 }
 
+                //According to confidence, change the ouput.(socket.emit event)
                 if (res.confidences[i] * 100 >= 90) {
                   _this2.outputTest[i].style.visibility = 'visible';
                   if (!_this2.eventEmitted[i]) {
                     setImmediate(function () {
                       _this2.socket.emit('output', { id: _this2.socket.id, output: i });
-                    }, 5000);
+                    });
                     _this2.eventEmitted[i] = true;
                   }
                 } else {
