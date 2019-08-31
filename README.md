@@ -13,11 +13,22 @@ To use the code, first install the Javascript dependencies by running
 ```
 npm install
 ```
+or
+
+```
+sudo npm install
+```
+
+If mac OS user face error to install serialport package use this command below
+
+```
+sudo npm install serialport --unsafe-perm --build-from-source
+```
 
 Then start the local budo web server by running
 
 ```
-npm start
+npm run server
 ```
 
 This will start a web server on [`localhost:9966`](http://localhost:9966). Try and allow permission to your webcam, and add some examples by holding down the buttons.
@@ -52,8 +63,10 @@ https is required to get camera permissions to work when not working with localh
 openssl genrsa -out server.key 2048
 openssl req -new -x509 -sha256 -key server.key -out server.cer -days 365 -subj /CN=YOUR_IP
 ```
-2. Change 28 line of main.js to const WEB_ADDRESS = 'https://YOUR_IP:3000'
+2. Change 28 line of main.js to const WEB_ADDRESS = `https://YOUR_IP:3000`
 
 3. Use `npm run server`
 
 4. Go to `https://YOUR_IP:3000`
+
+
