@@ -30,6 +30,10 @@ var _knnClassifier = require('@tensorflow-models/knn-classifier');
 
 var knnClassifier = _interopRequireWildcard(_knnClassifier);
 
+var _internalIp = require('internal-ip');
+
+var internalip = _interopRequireWildcard(_internalIp);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -42,7 +46,7 @@ var IMAGE_SIZE = 227;
 var TOPK = 10;
 
 //Address : 수업시 수정
-var WEB_ADDRESS = 'https://192.168.0.4:3000';
+var WEB_ADDRESS = 'https://192.168.0.39:3000';
 
 var Main = function () {
   function Main() {
@@ -310,7 +314,7 @@ window.addEventListener('load', function () {
 });
 
 }).call(this,require("timers").setImmediate)
-},{"@babel/polyfill":2,"@tensorflow-models/knn-classifier":10,"@tensorflow-models/mobilenet":13,"@tensorflow/tfjs":243,"timers":544}],2:[function(require,module,exports){
+},{"@babel/polyfill":2,"@tensorflow-models/knn-classifier":10,"@tensorflow-models/mobilenet":13,"@tensorflow/tfjs":243,"internal-ip":524,"timers":548}],2:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -342,7 +346,7 @@ if (global._babelPolyfill && typeof console !== "undefined" && console.warn) {
 
 global._babelPolyfill = true;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"core-js/es6":248,"core-js/fn/array/includes":249,"core-js/fn/object/entries":250,"core-js/fn/object/get-own-property-descriptors":251,"core-js/fn/object/values":252,"core-js/fn/promise/finally":253,"core-js/fn/string/pad-end":254,"core-js/fn/string/pad-start":255,"core-js/fn/symbol/async-iterator":256,"core-js/web":521,"regenerator-runtime/runtime":535}],3:[function(require,module,exports){
+},{"core-js/es6":248,"core-js/fn/array/includes":249,"core-js/fn/object/entries":250,"core-js/fn/object/get-own-property-descriptors":251,"core-js/fn/object/values":252,"core-js/fn/promise/finally":253,"core-js/fn/string/pad-end":254,"core-js/fn/string/pad-start":255,"core-js/fn/symbol/async-iterator":256,"core-js/web":521,"regenerator-runtime/runtime":539}],3:[function(require,module,exports){
 "use strict";
 module.exports = asPromise;
 
@@ -4330,7 +4334,7 @@ $root.tensorflow = (function() {
 
 module.exports = $root;
 
-},{"protobufjs/minimal":524}],15:[function(require,module,exports){
+},{"protobufjs/minimal":528}],15:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var ExecutionContext = (function () {
@@ -8600,7 +8604,7 @@ function nextFrame() {
 exports.nextFrame = nextFrame;
 
 }).call(this,require("timers").setImmediate)
-},{"timers":544}],55:[function(require,module,exports){
+},{"timers":548}],55:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 function isMobile() {
@@ -9291,7 +9295,7 @@ function getOrMakeEnvironment() {
 exports.ENV = getOrMakeEnvironment();
 
 }).call(this,require('_process'))
-},{"./device_util":55,"./engine":56,"./environment_util":58,"./tensor":184,"./tensor_util":186,"_process":523}],58:[function(require,module,exports){
+},{"./device_util":55,"./engine":56,"./environment_util":58,"./tensor":184,"./tensor_util":186,"_process":527}],58:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Type;
@@ -13733,7 +13737,7 @@ var MathBackendCPU = (function () {
 exports.MathBackendCPU = MathBackendCPU;
 environment_1.ENV.registerBackend('cpu', function () { return new MathBackendCPU(); }, 1, tensor_1.setTensorTracker);
 
-},{"../environment":57,"../log":130,"../ops/array_ops_util":132,"../ops/axis_util":133,"../ops/broadcast_util":136,"../ops/concat_util":140,"../ops/erf_util":143,"../ops/ops":154,"../ops/selu_util":163,"../ops/slice_util":165,"../tensor":184,"../types":190,"../util":191,"./backend":73,"./backend_util":75,"./complex_util":77,"./non_max_suppression_impl":78,"./split_shared":79,"./topk_impl":80,"./where_impl":129,"seedrandom":536}],75:[function(require,module,exports){
+},{"../environment":57,"../log":130,"../ops/array_ops_util":132,"../ops/axis_util":133,"../ops/broadcast_util":136,"../ops/concat_util":140,"../ops/erf_util":143,"../ops/ops":154,"../ops/selu_util":163,"../ops/slice_util":165,"../tensor":184,"../types":190,"../util":191,"./backend":73,"./backend_util":75,"./complex_util":77,"./non_max_suppression_impl":78,"./split_shared":79,"./topk_impl":80,"./where_impl":129,"seedrandom":540}],75:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var tensor_ops_1 = require("../ops/tensor_ops");
@@ -21668,7 +21672,7 @@ var MPRandGauss = (function () {
 }());
 exports.MPRandGauss = MPRandGauss;
 
-},{"seedrandom":536}],157:[function(require,module,exports){
+},{"seedrandom":540}],157:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var util_1 = require("../util");
@@ -25755,7 +25759,7 @@ function now() {
 exports.now = now;
 
 }).call(this,require('_process'))
-},{"_process":523}],192:[function(require,module,exports){
+},{"_process":527}],192:[function(require,module,exports){
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var version = '0.13.2';
@@ -40136,7 +40140,7 @@ function numberIsNaN (obj) {
   return obj !== obj // eslint-disable-line no-self-compare
 }
 
-},{"base64-js":245,"ieee754":522}],248:[function(require,module,exports){
+},{"base64-js":245,"ieee754":523}],248:[function(require,module,exports){
 require('../modules/es6.symbol');
 require('../modules/es6.object.create');
 require('../modules/es6.object.define-property');
@@ -45943,6 +45947,43 @@ require('../modules/web.dom.iterable');
 module.exports = require('../modules/_core');
 
 },{"../modules/_core":275,"../modules/web.dom.iterable":518,"../modules/web.immediate":519,"../modules/web.timers":520}],522:[function(require,module,exports){
+"use strict";
+
+const os = require("os");
+const platform = os.platform();
+
+if ([
+  "android",
+  "darwin",
+  "freebsd",
+  "linux",
+  "openbsd",
+  "sunos",
+  "win32",
+  "aix",
+].indexOf(platform) !== -1) {
+  let file;
+  if (platform === "aix") {
+    // AIX `netstat` output is compatible with Solaris
+    file = `${os.type() === "OS400" ? "ibmi" : "sunos"}.js`;
+  } else {
+    file = `${platform}.js`;
+  }
+
+  const m = require(`./${file}`);
+  module.exports.v4 = () => m.v4();
+  module.exports.v6 = () => m.v6();
+  module.exports.v4.sync = () => m.v4.sync();
+  module.exports.v6.sync = () => m.v6.sync();
+} else {
+  const unsupported = () => { throw new Error(`Unsupported Platform: ${platform}`); };
+  module.exports.v4 = unsupported;
+  module.exports.v6 = unsupported;
+  module.exports.v4.sync = unsupported;
+  module.exports.v6.sync = unsupported;
+}
+
+},{"os":526}],523:[function(require,module,exports){
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
   var eLen = (nBytes * 8) - mLen - 1
@@ -46028,7 +46069,786 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],523:[function(require,module,exports){
+},{}],524:[function(require,module,exports){
+'use strict';
+const os = require('os');
+const defaultGateway = require('default-gateway');
+const ipaddr = require('ipaddr.js');
+
+function findIp(gateway) {
+	const interfaces = os.networkInterfaces();
+	const gatewayIp = ipaddr.parse(gateway);
+	let ip;
+
+	// Look for the matching interface in all local interfaces
+	Object.keys(interfaces).some(name => {
+		return interfaces[name].some(addr => {
+			const prefix = ipaddr.parse(addr.netmask).prefixLengthFromSubnetMask();
+			const net = ipaddr.parseCIDR(`${addr.address}/${prefix}`);
+
+			if (net[0] && net[0].kind() === gatewayIp.kind() && gatewayIp.match(net)) {
+				ip = net[0].toString();
+			}
+
+			return Boolean(ip);
+		});
+	});
+
+	return ip;
+}
+
+function promise(family) {
+	return defaultGateway[family]().then(result => {
+		return findIp(result.gateway) || null;
+	}).catch(() => null);
+}
+
+function sync(family) {
+	try {
+		const result = defaultGateway[family].sync();
+		return findIp(result.gateway) || null;
+	} catch (error) {
+		return null;
+	}
+}
+
+const internalIp = {};
+internalIp.v6 = () => promise('v6');
+internalIp.v4 = () => promise('v4');
+internalIp.v6.sync = () => sync('v6');
+internalIp.v4.sync = () => sync('v4');
+
+module.exports = internalIp;
+// TODO: Remove this for the next major release
+module.exports.default = internalIp;
+
+},{"default-gateway":522,"ipaddr.js":525,"os":526}],525:[function(require,module,exports){
+(function() {
+  var expandIPv6, ipaddr, ipv4Part, ipv4Regexes, ipv6Part, ipv6Regexes, matchCIDR, root, zoneIndex;
+
+  ipaddr = {};
+
+  root = this;
+
+  if ((typeof module !== "undefined" && module !== null) && module.exports) {
+    module.exports = ipaddr;
+  } else {
+    root['ipaddr'] = ipaddr;
+  }
+
+  matchCIDR = function(first, second, partSize, cidrBits) {
+    var part, shift;
+    if (first.length !== second.length) {
+      throw new Error("ipaddr: cannot match CIDR for objects with different lengths");
+    }
+    part = 0;
+    while (cidrBits > 0) {
+      shift = partSize - cidrBits;
+      if (shift < 0) {
+        shift = 0;
+      }
+      if (first[part] >> shift !== second[part] >> shift) {
+        return false;
+      }
+      cidrBits -= partSize;
+      part += 1;
+    }
+    return true;
+  };
+
+  ipaddr.subnetMatch = function(address, rangeList, defaultName) {
+    var k, len, rangeName, rangeSubnets, subnet;
+    if (defaultName == null) {
+      defaultName = 'unicast';
+    }
+    for (rangeName in rangeList) {
+      rangeSubnets = rangeList[rangeName];
+      if (rangeSubnets[0] && !(rangeSubnets[0] instanceof Array)) {
+        rangeSubnets = [rangeSubnets];
+      }
+      for (k = 0, len = rangeSubnets.length; k < len; k++) {
+        subnet = rangeSubnets[k];
+        if (address.kind() === subnet[0].kind()) {
+          if (address.match.apply(address, subnet)) {
+            return rangeName;
+          }
+        }
+      }
+    }
+    return defaultName;
+  };
+
+  ipaddr.IPv4 = (function() {
+    function IPv4(octets) {
+      var k, len, octet;
+      if (octets.length !== 4) {
+        throw new Error("ipaddr: ipv4 octet count should be 4");
+      }
+      for (k = 0, len = octets.length; k < len; k++) {
+        octet = octets[k];
+        if (!((0 <= octet && octet <= 255))) {
+          throw new Error("ipaddr: ipv4 octet should fit in 8 bits");
+        }
+      }
+      this.octets = octets;
+    }
+
+    IPv4.prototype.kind = function() {
+      return 'ipv4';
+    };
+
+    IPv4.prototype.toString = function() {
+      return this.octets.join(".");
+    };
+
+    IPv4.prototype.toNormalizedString = function() {
+      return this.toString();
+    };
+
+    IPv4.prototype.toByteArray = function() {
+      return this.octets.slice(0);
+    };
+
+    IPv4.prototype.match = function(other, cidrRange) {
+      var ref;
+      if (cidrRange === void 0) {
+        ref = other, other = ref[0], cidrRange = ref[1];
+      }
+      if (other.kind() !== 'ipv4') {
+        throw new Error("ipaddr: cannot match ipv4 address with non-ipv4 one");
+      }
+      return matchCIDR(this.octets, other.octets, 8, cidrRange);
+    };
+
+    IPv4.prototype.SpecialRanges = {
+      unspecified: [[new IPv4([0, 0, 0, 0]), 8]],
+      broadcast: [[new IPv4([255, 255, 255, 255]), 32]],
+      multicast: [[new IPv4([224, 0, 0, 0]), 4]],
+      linkLocal: [[new IPv4([169, 254, 0, 0]), 16]],
+      loopback: [[new IPv4([127, 0, 0, 0]), 8]],
+      carrierGradeNat: [[new IPv4([100, 64, 0, 0]), 10]],
+      "private": [[new IPv4([10, 0, 0, 0]), 8], [new IPv4([172, 16, 0, 0]), 12], [new IPv4([192, 168, 0, 0]), 16]],
+      reserved: [[new IPv4([192, 0, 0, 0]), 24], [new IPv4([192, 0, 2, 0]), 24], [new IPv4([192, 88, 99, 0]), 24], [new IPv4([198, 51, 100, 0]), 24], [new IPv4([203, 0, 113, 0]), 24], [new IPv4([240, 0, 0, 0]), 4]]
+    };
+
+    IPv4.prototype.range = function() {
+      return ipaddr.subnetMatch(this, this.SpecialRanges);
+    };
+
+    IPv4.prototype.toIPv4MappedAddress = function() {
+      return ipaddr.IPv6.parse("::ffff:" + (this.toString()));
+    };
+
+    IPv4.prototype.prefixLengthFromSubnetMask = function() {
+      var cidr, i, k, octet, stop, zeros, zerotable;
+      zerotable = {
+        0: 8,
+        128: 7,
+        192: 6,
+        224: 5,
+        240: 4,
+        248: 3,
+        252: 2,
+        254: 1,
+        255: 0
+      };
+      cidr = 0;
+      stop = false;
+      for (i = k = 3; k >= 0; i = k += -1) {
+        octet = this.octets[i];
+        if (octet in zerotable) {
+          zeros = zerotable[octet];
+          if (stop && zeros !== 0) {
+            return null;
+          }
+          if (zeros !== 8) {
+            stop = true;
+          }
+          cidr += zeros;
+        } else {
+          return null;
+        }
+      }
+      return 32 - cidr;
+    };
+
+    return IPv4;
+
+  })();
+
+  ipv4Part = "(0?\\d+|0x[a-f0-9]+)";
+
+  ipv4Regexes = {
+    fourOctet: new RegExp("^" + ipv4Part + "\\." + ipv4Part + "\\." + ipv4Part + "\\." + ipv4Part + "$", 'i'),
+    longValue: new RegExp("^" + ipv4Part + "$", 'i')
+  };
+
+  ipaddr.IPv4.parser = function(string) {
+    var match, parseIntAuto, part, shift, value;
+    parseIntAuto = function(string) {
+      if (string[0] === "0" && string[1] !== "x") {
+        return parseInt(string, 8);
+      } else {
+        return parseInt(string);
+      }
+    };
+    if (match = string.match(ipv4Regexes.fourOctet)) {
+      return (function() {
+        var k, len, ref, results;
+        ref = match.slice(1, 6);
+        results = [];
+        for (k = 0, len = ref.length; k < len; k++) {
+          part = ref[k];
+          results.push(parseIntAuto(part));
+        }
+        return results;
+      })();
+    } else if (match = string.match(ipv4Regexes.longValue)) {
+      value = parseIntAuto(match[1]);
+      if (value > 0xffffffff || value < 0) {
+        throw new Error("ipaddr: address outside defined range");
+      }
+      return ((function() {
+        var k, results;
+        results = [];
+        for (shift = k = 0; k <= 24; shift = k += 8) {
+          results.push((value >> shift) & 0xff);
+        }
+        return results;
+      })()).reverse();
+    } else {
+      return null;
+    }
+  };
+
+  ipaddr.IPv6 = (function() {
+    function IPv6(parts, zoneId) {
+      var i, k, l, len, part, ref;
+      if (parts.length === 16) {
+        this.parts = [];
+        for (i = k = 0; k <= 14; i = k += 2) {
+          this.parts.push((parts[i] << 8) | parts[i + 1]);
+        }
+      } else if (parts.length === 8) {
+        this.parts = parts;
+      } else {
+        throw new Error("ipaddr: ipv6 part count should be 8 or 16");
+      }
+      ref = this.parts;
+      for (l = 0, len = ref.length; l < len; l++) {
+        part = ref[l];
+        if (!((0 <= part && part <= 0xffff))) {
+          throw new Error("ipaddr: ipv6 part should fit in 16 bits");
+        }
+      }
+      if (zoneId) {
+        this.zoneId = zoneId;
+      }
+    }
+
+    IPv6.prototype.kind = function() {
+      return 'ipv6';
+    };
+
+    IPv6.prototype.toString = function() {
+      return this.toNormalizedString().replace(/((^|:)(0(:|$))+)/, '::');
+    };
+
+    IPv6.prototype.toRFC5952String = function() {
+      var bestMatchIndex, bestMatchLength, match, regex, string;
+      regex = /((^|:)(0(:|$)){2,})/g;
+      string = this.toNormalizedString();
+      bestMatchIndex = 0;
+      bestMatchLength = -1;
+      while ((match = regex.exec(string))) {
+        if (match[0].length > bestMatchLength) {
+          bestMatchIndex = match.index;
+          bestMatchLength = match[0].length;
+        }
+      }
+      if (bestMatchLength < 0) {
+        return string;
+      }
+      return string.substring(0, bestMatchIndex) + '::' + string.substring(bestMatchIndex + bestMatchLength);
+    };
+
+    IPv6.prototype.toByteArray = function() {
+      var bytes, k, len, part, ref;
+      bytes = [];
+      ref = this.parts;
+      for (k = 0, len = ref.length; k < len; k++) {
+        part = ref[k];
+        bytes.push(part >> 8);
+        bytes.push(part & 0xff);
+      }
+      return bytes;
+    };
+
+    IPv6.prototype.toNormalizedString = function() {
+      var addr, part, suffix;
+      addr = ((function() {
+        var k, len, ref, results;
+        ref = this.parts;
+        results = [];
+        for (k = 0, len = ref.length; k < len; k++) {
+          part = ref[k];
+          results.push(part.toString(16));
+        }
+        return results;
+      }).call(this)).join(":");
+      suffix = '';
+      if (this.zoneId) {
+        suffix = '%' + this.zoneId;
+      }
+      return addr + suffix;
+    };
+
+    IPv6.prototype.toFixedLengthString = function() {
+      var addr, part, suffix;
+      addr = ((function() {
+        var k, len, ref, results;
+        ref = this.parts;
+        results = [];
+        for (k = 0, len = ref.length; k < len; k++) {
+          part = ref[k];
+          results.push(part.toString(16).padStart(4, '0'));
+        }
+        return results;
+      }).call(this)).join(":");
+      suffix = '';
+      if (this.zoneId) {
+        suffix = '%' + this.zoneId;
+      }
+      return addr + suffix;
+    };
+
+    IPv6.prototype.match = function(other, cidrRange) {
+      var ref;
+      if (cidrRange === void 0) {
+        ref = other, other = ref[0], cidrRange = ref[1];
+      }
+      if (other.kind() !== 'ipv6') {
+        throw new Error("ipaddr: cannot match ipv6 address with non-ipv6 one");
+      }
+      return matchCIDR(this.parts, other.parts, 16, cidrRange);
+    };
+
+    IPv6.prototype.SpecialRanges = {
+      unspecified: [new IPv6([0, 0, 0, 0, 0, 0, 0, 0]), 128],
+      linkLocal: [new IPv6([0xfe80, 0, 0, 0, 0, 0, 0, 0]), 10],
+      multicast: [new IPv6([0xff00, 0, 0, 0, 0, 0, 0, 0]), 8],
+      loopback: [new IPv6([0, 0, 0, 0, 0, 0, 0, 1]), 128],
+      uniqueLocal: [new IPv6([0xfc00, 0, 0, 0, 0, 0, 0, 0]), 7],
+      ipv4Mapped: [new IPv6([0, 0, 0, 0, 0, 0xffff, 0, 0]), 96],
+      rfc6145: [new IPv6([0, 0, 0, 0, 0xffff, 0, 0, 0]), 96],
+      rfc6052: [new IPv6([0x64, 0xff9b, 0, 0, 0, 0, 0, 0]), 96],
+      '6to4': [new IPv6([0x2002, 0, 0, 0, 0, 0, 0, 0]), 16],
+      teredo: [new IPv6([0x2001, 0, 0, 0, 0, 0, 0, 0]), 32],
+      reserved: [[new IPv6([0x2001, 0xdb8, 0, 0, 0, 0, 0, 0]), 32]]
+    };
+
+    IPv6.prototype.range = function() {
+      return ipaddr.subnetMatch(this, this.SpecialRanges);
+    };
+
+    IPv6.prototype.isIPv4MappedAddress = function() {
+      return this.range() === 'ipv4Mapped';
+    };
+
+    IPv6.prototype.toIPv4Address = function() {
+      var high, low, ref;
+      if (!this.isIPv4MappedAddress()) {
+        throw new Error("ipaddr: trying to convert a generic ipv6 address to ipv4");
+      }
+      ref = this.parts.slice(-2), high = ref[0], low = ref[1];
+      return new ipaddr.IPv4([high >> 8, high & 0xff, low >> 8, low & 0xff]);
+    };
+
+    IPv6.prototype.prefixLengthFromSubnetMask = function() {
+      var cidr, i, k, part, stop, zeros, zerotable;
+      zerotable = {
+        0: 16,
+        32768: 15,
+        49152: 14,
+        57344: 13,
+        61440: 12,
+        63488: 11,
+        64512: 10,
+        65024: 9,
+        65280: 8,
+        65408: 7,
+        65472: 6,
+        65504: 5,
+        65520: 4,
+        65528: 3,
+        65532: 2,
+        65534: 1,
+        65535: 0
+      };
+      cidr = 0;
+      stop = false;
+      for (i = k = 7; k >= 0; i = k += -1) {
+        part = this.parts[i];
+        if (part in zerotable) {
+          zeros = zerotable[part];
+          if (stop && zeros !== 0) {
+            return null;
+          }
+          if (zeros !== 16) {
+            stop = true;
+          }
+          cidr += zeros;
+        } else {
+          return null;
+        }
+      }
+      return 128 - cidr;
+    };
+
+    return IPv6;
+
+  })();
+
+  ipv6Part = "(?:[0-9a-f]+::?)+";
+
+  zoneIndex = "%[0-9a-z]{1,}";
+
+  ipv6Regexes = {
+    zoneIndex: new RegExp(zoneIndex, 'i'),
+    "native": new RegExp("^(::)?(" + ipv6Part + ")?([0-9a-f]+)?(::)?(" + zoneIndex + ")?$", 'i'),
+    transitional: new RegExp(("^((?:" + ipv6Part + ")|(?:::)(?:" + ipv6Part + ")?)") + (ipv4Part + "\\." + ipv4Part + "\\." + ipv4Part + "\\." + ipv4Part) + ("(" + zoneIndex + ")?$"), 'i')
+  };
+
+  expandIPv6 = function(string, parts) {
+    var colonCount, lastColon, part, replacement, replacementCount, zoneId;
+    if (string.indexOf('::') !== string.lastIndexOf('::')) {
+      return null;
+    }
+    zoneId = (string.match(ipv6Regexes['zoneIndex']) || [])[0];
+    if (zoneId) {
+      zoneId = zoneId.substring(1);
+      string = string.replace(/%.+$/, '');
+    }
+    colonCount = 0;
+    lastColon = -1;
+    while ((lastColon = string.indexOf(':', lastColon + 1)) >= 0) {
+      colonCount++;
+    }
+    if (string.substr(0, 2) === '::') {
+      colonCount--;
+    }
+    if (string.substr(-2, 2) === '::') {
+      colonCount--;
+    }
+    if (colonCount > parts) {
+      return null;
+    }
+    replacementCount = parts - colonCount;
+    replacement = ':';
+    while (replacementCount--) {
+      replacement += '0:';
+    }
+    string = string.replace('::', replacement);
+    if (string[0] === ':') {
+      string = string.slice(1);
+    }
+    if (string[string.length - 1] === ':') {
+      string = string.slice(0, -1);
+    }
+    parts = (function() {
+      var k, len, ref, results;
+      ref = string.split(":");
+      results = [];
+      for (k = 0, len = ref.length; k < len; k++) {
+        part = ref[k];
+        results.push(parseInt(part, 16));
+      }
+      return results;
+    })();
+    return {
+      parts: parts,
+      zoneId: zoneId
+    };
+  };
+
+  ipaddr.IPv6.parser = function(string) {
+    var addr, k, len, match, octet, octets, zoneId;
+    if (ipv6Regexes['native'].test(string)) {
+      return expandIPv6(string, 8);
+    } else if (match = string.match(ipv6Regexes['transitional'])) {
+      zoneId = match[6] || '';
+      addr = expandIPv6(match[1].slice(0, -1) + zoneId, 6);
+      if (addr.parts) {
+        octets = [parseInt(match[2]), parseInt(match[3]), parseInt(match[4]), parseInt(match[5])];
+        for (k = 0, len = octets.length; k < len; k++) {
+          octet = octets[k];
+          if (!((0 <= octet && octet <= 255))) {
+            return null;
+          }
+        }
+        addr.parts.push(octets[0] << 8 | octets[1]);
+        addr.parts.push(octets[2] << 8 | octets[3]);
+        return {
+          parts: addr.parts,
+          zoneId: addr.zoneId
+        };
+      }
+    }
+    return null;
+  };
+
+  ipaddr.IPv4.isIPv4 = ipaddr.IPv6.isIPv6 = function(string) {
+    return this.parser(string) !== null;
+  };
+
+  ipaddr.IPv4.isValid = function(string) {
+    var e;
+    try {
+      new this(this.parser(string));
+      return true;
+    } catch (error1) {
+      e = error1;
+      return false;
+    }
+  };
+
+  ipaddr.IPv4.isValidFourPartDecimal = function(string) {
+    if (ipaddr.IPv4.isValid(string) && string.match(/^(0|[1-9]\d*)(\.(0|[1-9]\d*)){3}$/)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  ipaddr.IPv6.isValid = function(string) {
+    var addr, e;
+    if (typeof string === "string" && string.indexOf(":") === -1) {
+      return false;
+    }
+    try {
+      addr = this.parser(string);
+      new this(addr.parts, addr.zoneId);
+      return true;
+    } catch (error1) {
+      e = error1;
+      return false;
+    }
+  };
+
+  ipaddr.IPv4.parse = function(string) {
+    var parts;
+    parts = this.parser(string);
+    if (parts === null) {
+      throw new Error("ipaddr: string is not formatted like ip address");
+    }
+    return new this(parts);
+  };
+
+  ipaddr.IPv6.parse = function(string) {
+    var addr;
+    addr = this.parser(string);
+    if (addr.parts === null) {
+      throw new Error("ipaddr: string is not formatted like ip address");
+    }
+    return new this(addr.parts, addr.zoneId);
+  };
+
+  ipaddr.IPv4.parseCIDR = function(string) {
+    var maskLength, match, parsed;
+    if (match = string.match(/^(.+)\/(\d+)$/)) {
+      maskLength = parseInt(match[2]);
+      if (maskLength >= 0 && maskLength <= 32) {
+        parsed = [this.parse(match[1]), maskLength];
+        Object.defineProperty(parsed, 'toString', {
+          value: function() {
+            return this.join('/');
+          }
+        });
+        return parsed;
+      }
+    }
+    throw new Error("ipaddr: string is not formatted like an IPv4 CIDR range");
+  };
+
+  ipaddr.IPv4.subnetMaskFromPrefixLength = function(prefix) {
+    var filledOctetCount, j, octets;
+    prefix = parseInt(prefix);
+    if (prefix < 0 || prefix > 32) {
+      throw new Error('ipaddr: invalid IPv4 prefix length');
+    }
+    octets = [0, 0, 0, 0];
+    j = 0;
+    filledOctetCount = Math.floor(prefix / 8);
+    while (j < filledOctetCount) {
+      octets[j] = 255;
+      j++;
+    }
+    if (filledOctetCount < 4) {
+      octets[filledOctetCount] = Math.pow(2, prefix % 8) - 1 << 8 - (prefix % 8);
+    }
+    return new this(octets);
+  };
+
+  ipaddr.IPv4.broadcastAddressFromCIDR = function(string) {
+    var cidr, error, i, ipInterfaceOctets, octets, subnetMaskOctets;
+    try {
+      cidr = this.parseCIDR(string);
+      ipInterfaceOctets = cidr[0].toByteArray();
+      subnetMaskOctets = this.subnetMaskFromPrefixLength(cidr[1]).toByteArray();
+      octets = [];
+      i = 0;
+      while (i < 4) {
+        octets.push(parseInt(ipInterfaceOctets[i], 10) | parseInt(subnetMaskOctets[i], 10) ^ 255);
+        i++;
+      }
+      return new this(octets);
+    } catch (error1) {
+      error = error1;
+      throw new Error('ipaddr: the address does not have IPv4 CIDR format');
+    }
+  };
+
+  ipaddr.IPv4.networkAddressFromCIDR = function(string) {
+    var cidr, error, i, ipInterfaceOctets, octets, subnetMaskOctets;
+    try {
+      cidr = this.parseCIDR(string);
+      ipInterfaceOctets = cidr[0].toByteArray();
+      subnetMaskOctets = this.subnetMaskFromPrefixLength(cidr[1]).toByteArray();
+      octets = [];
+      i = 0;
+      while (i < 4) {
+        octets.push(parseInt(ipInterfaceOctets[i], 10) & parseInt(subnetMaskOctets[i], 10));
+        i++;
+      }
+      return new this(octets);
+    } catch (error1) {
+      error = error1;
+      throw new Error('ipaddr: the address does not have IPv4 CIDR format');
+    }
+  };
+
+  ipaddr.IPv6.parseCIDR = function(string) {
+    var maskLength, match, parsed;
+    if (match = string.match(/^(.+)\/(\d+)$/)) {
+      maskLength = parseInt(match[2]);
+      if (maskLength >= 0 && maskLength <= 128) {
+        parsed = [this.parse(match[1]), maskLength];
+        Object.defineProperty(parsed, 'toString', {
+          value: function() {
+            return this.join('/');
+          }
+        });
+        return parsed;
+      }
+    }
+    throw new Error("ipaddr: string is not formatted like an IPv6 CIDR range");
+  };
+
+  ipaddr.isValid = function(string) {
+    return ipaddr.IPv6.isValid(string) || ipaddr.IPv4.isValid(string);
+  };
+
+  ipaddr.parse = function(string) {
+    if (ipaddr.IPv6.isValid(string)) {
+      return ipaddr.IPv6.parse(string);
+    } else if (ipaddr.IPv4.isValid(string)) {
+      return ipaddr.IPv4.parse(string);
+    } else {
+      throw new Error("ipaddr: the address has neither IPv6 nor IPv4 format");
+    }
+  };
+
+  ipaddr.parseCIDR = function(string) {
+    var e;
+    try {
+      return ipaddr.IPv6.parseCIDR(string);
+    } catch (error1) {
+      e = error1;
+      try {
+        return ipaddr.IPv4.parseCIDR(string);
+      } catch (error1) {
+        e = error1;
+        throw new Error("ipaddr: the address has neither IPv6 nor IPv4 CIDR format");
+      }
+    }
+  };
+
+  ipaddr.fromByteArray = function(bytes) {
+    var length;
+    length = bytes.length;
+    if (length === 4) {
+      return new ipaddr.IPv4(bytes);
+    } else if (length === 16) {
+      return new ipaddr.IPv6(bytes);
+    } else {
+      throw new Error("ipaddr: the binary input is neither an IPv6 nor IPv4 address");
+    }
+  };
+
+  ipaddr.process = function(string) {
+    var addr;
+    addr = this.parse(string);
+    if (addr.kind() === 'ipv6' && addr.isIPv4MappedAddress()) {
+      return addr.toIPv4Address();
+    } else {
+      return addr;
+    }
+  };
+
+}).call(this);
+
+},{}],526:[function(require,module,exports){
+exports.endianness = function () { return 'LE' };
+
+exports.hostname = function () {
+    if (typeof location !== 'undefined') {
+        return location.hostname
+    }
+    else return '';
+};
+
+exports.loadavg = function () { return [] };
+
+exports.uptime = function () { return 0 };
+
+exports.freemem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.totalmem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.cpus = function () { return [] };
+
+exports.type = function () { return 'Browser' };
+
+exports.release = function () {
+    if (typeof navigator !== 'undefined') {
+        return navigator.appVersion;
+    }
+    return '';
+};
+
+exports.networkInterfaces
+= exports.getNetworkInterfaces
+= function () { return {} };
+
+exports.arch = function () { return 'javascript' };
+
+exports.platform = function () { return 'browser' };
+
+exports.tmpdir = exports.tmpDir = function () {
+    return '/tmp';
+};
+
+exports.EOL = '\n';
+
+exports.homedir = function () {
+	return '/'
+};
+
+},{}],527:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -46214,13 +47034,13 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],524:[function(require,module,exports){
+},{}],528:[function(require,module,exports){
 // minimal library entry point.
 
 "use strict";
 module.exports = require("./src/index-minimal");
 
-},{"./src/index-minimal":525}],525:[function(require,module,exports){
+},{"./src/index-minimal":529}],529:[function(require,module,exports){
 "use strict";
 var protobuf = exports;
 
@@ -46258,7 +47078,7 @@ function configure() {
 protobuf.Writer._configure(protobuf.BufferWriter);
 configure();
 
-},{"./reader":526,"./reader_buffer":527,"./roots":528,"./rpc":529,"./util/minimal":532,"./writer":533,"./writer_buffer":534}],526:[function(require,module,exports){
+},{"./reader":530,"./reader_buffer":531,"./roots":532,"./rpc":533,"./util/minimal":536,"./writer":537,"./writer_buffer":538}],530:[function(require,module,exports){
 "use strict";
 module.exports = Reader;
 
@@ -46665,7 +47485,7 @@ Reader._configure = function(BufferReader_) {
     });
 };
 
-},{"./util/minimal":532}],527:[function(require,module,exports){
+},{"./util/minimal":536}],531:[function(require,module,exports){
 "use strict";
 module.exports = BufferReader;
 
@@ -46711,7 +47531,7 @@ BufferReader.prototype.string = function read_string_buffer() {
  * @returns {Buffer} Value read
  */
 
-},{"./reader":526,"./util/minimal":532}],528:[function(require,module,exports){
+},{"./reader":530,"./util/minimal":536}],532:[function(require,module,exports){
 "use strict";
 module.exports = {};
 
@@ -46731,7 +47551,7 @@ module.exports = {};
  * var root = protobuf.roots["myroot"];
  */
 
-},{}],529:[function(require,module,exports){
+},{}],533:[function(require,module,exports){
 "use strict";
 
 /**
@@ -46769,7 +47589,7 @@ var rpc = exports;
 
 rpc.Service = require("./rpc/service");
 
-},{"./rpc/service":530}],530:[function(require,module,exports){
+},{"./rpc/service":534}],534:[function(require,module,exports){
 "use strict";
 module.exports = Service;
 
@@ -46913,7 +47733,7 @@ Service.prototype.end = function end(endedByRPC) {
     return this;
 };
 
-},{"../util/minimal":532}],531:[function(require,module,exports){
+},{"../util/minimal":536}],535:[function(require,module,exports){
 "use strict";
 module.exports = LongBits;
 
@@ -47115,7 +47935,7 @@ LongBits.prototype.length = function length() {
          : part2 < 128 ? 9 : 10;
 };
 
-},{"../util/minimal":532}],532:[function(require,module,exports){
+},{"../util/minimal":536}],536:[function(require,module,exports){
 (function (global){
 "use strict";
 var util = exports;
@@ -47533,7 +48353,7 @@ util._configure = function() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./longbits":531,"@protobufjs/aspromise":3,"@protobufjs/base64":4,"@protobufjs/eventemitter":5,"@protobufjs/float":6,"@protobufjs/inquire":7,"@protobufjs/pool":8,"@protobufjs/utf8":9}],533:[function(require,module,exports){
+},{"./longbits":535,"@protobufjs/aspromise":3,"@protobufjs/base64":4,"@protobufjs/eventemitter":5,"@protobufjs/float":6,"@protobufjs/inquire":7,"@protobufjs/pool":8,"@protobufjs/utf8":9}],537:[function(require,module,exports){
 "use strict";
 module.exports = Writer;
 
@@ -47994,7 +48814,7 @@ Writer._configure = function(BufferWriter_) {
     BufferWriter = BufferWriter_;
 };
 
-},{"./util/minimal":532}],534:[function(require,module,exports){
+},{"./util/minimal":536}],538:[function(require,module,exports){
 "use strict";
 module.exports = BufferWriter;
 
@@ -48077,7 +48897,7 @@ BufferWriter.prototype.string = function write_string_buffer(value) {
  * @returns {Buffer} Finished buffer
  */
 
-},{"./util/minimal":532,"./writer":533}],535:[function(require,module,exports){
+},{"./util/minimal":536,"./writer":537}],539:[function(require,module,exports){
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -48806,7 +49626,7 @@ BufferWriter.prototype.string = function write_string_buffer(value) {
   (function() { return this })() || Function("return this")()
 );
 
-},{}],536:[function(require,module,exports){
+},{}],540:[function(require,module,exports){
 // A library of seedable RNGs implemented in Javascript.
 //
 // Usage:
@@ -48868,7 +49688,7 @@ sr.tychei = tychei;
 
 module.exports = sr;
 
-},{"./lib/alea":537,"./lib/tychei":538,"./lib/xor128":539,"./lib/xor4096":540,"./lib/xorshift7":541,"./lib/xorwow":542,"./seedrandom":543}],537:[function(require,module,exports){
+},{"./lib/alea":541,"./lib/tychei":542,"./lib/xor128":543,"./lib/xor4096":544,"./lib/xorshift7":545,"./lib/xorwow":546,"./seedrandom":547}],541:[function(require,module,exports){
 // A port of an algorithm by Johannes Baagøe <baagoe@baagoe.com>, 2010
 // http://baagoe.com/en/RandomMusings/javascript/
 // https://github.com/nquinlan/better-random-numbers-for-javascript-mirror
@@ -48984,7 +49804,7 @@ if (module && module.exports) {
 
 
 
-},{}],538:[function(require,module,exports){
+},{}],542:[function(require,module,exports){
 // A Javascript implementaion of the "Tyche-i" prng algorithm by
 // Samuel Neves and Filipe Araujo.
 // See https://eden.dei.uc.pt/~sneves/pubs/2011-snfa2.pdf
@@ -49089,7 +49909,7 @@ if (module && module.exports) {
 
 
 
-},{}],539:[function(require,module,exports){
+},{}],543:[function(require,module,exports){
 // A Javascript implementaion of the "xor128" prng algorithm by
 // George Marsaglia.  See http://www.jstatsoft.org/v08/i14/paper
 
@@ -49172,7 +49992,7 @@ if (module && module.exports) {
 
 
 
-},{}],540:[function(require,module,exports){
+},{}],544:[function(require,module,exports){
 // A Javascript implementaion of Richard Brent's Xorgens xor4096 algorithm.
 //
 // This fast non-cryptographic random number generator is designed for
@@ -49320,7 +50140,7 @@ if (module && module.exports) {
   (typeof define) == 'function' && define   // present with an AMD loader
 );
 
-},{}],541:[function(require,module,exports){
+},{}],545:[function(require,module,exports){
 // A Javascript implementaion of the "xorshift7" algorithm by
 // François Panneton and Pierre L'ecuyer:
 // "On the Xorgshift Random Number Generators"
@@ -49419,7 +50239,7 @@ if (module && module.exports) {
 );
 
 
-},{}],542:[function(require,module,exports){
+},{}],546:[function(require,module,exports){
 // A Javascript implementaion of the "xorwow" prng algorithm by
 // George Marsaglia.  See http://www.jstatsoft.org/v08/i14/paper
 
@@ -49507,7 +50327,7 @@ if (module && module.exports) {
 
 
 
-},{}],543:[function(require,module,exports){
+},{}],547:[function(require,module,exports){
 /*
 Copyright 2014 David Bau.
 
@@ -49759,7 +50579,7 @@ if ((typeof module) == 'object' && module.exports) {
   Math    // math: package containing random, pow, and seedrandom
 );
 
-},{"crypto":246}],544:[function(require,module,exports){
+},{"crypto":246}],548:[function(require,module,exports){
 (function (setImmediate,clearImmediate){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -49838,4 +50658,4 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":523,"timers":544}]},{},[1]);
+},{"process/browser.js":527,"timers":548}]},{},[1]);

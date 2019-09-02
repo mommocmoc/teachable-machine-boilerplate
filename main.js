@@ -16,7 +16,6 @@ import "@babel/polyfill";
 import * as mobilenetModule from '@tensorflow-models/mobilenet';
 import * as tf from '@tensorflow/tfjs';
 import * as knnClassifier from '@tensorflow-models/knn-classifier';
-import * as internalip from 'internal-ip';
 
 // Number of classes to classify
 const NUM_CLASSES = 3;
@@ -26,7 +25,8 @@ const IMAGE_SIZE = 227;
 const TOPK = 10;
 
 //Address : 수업시 수정
-const WEB_ADDRESS = 'https://192.168.0.39:3000'
+const WEB_ADDRESS = 'https://192.168.0.38:3000'
+//const WEB_ADDRESS = test;
 
 class Main {
   constructor() {
@@ -41,7 +41,7 @@ class Main {
     this.bindPage();
 
     // SocketIO
-    this.socket = io.connect(WEB_ADDRESS)
+    this.socket = io.connect()
     this.socket.on('connected', ()=>{
       console.log('Socket Connected');
     })
@@ -102,9 +102,8 @@ class Main {
     const reset = document.createElement('button')
     reset.innerText = "학습 데이터 리셋"
     this.jumbo.appendChild(reset);
-    reset.addEventListener('mousedown', () => {
-          this.knn.clearAllClasses();
-      } );
+    reset.addEventListener('touchstart',() => this.knn.clearAllClasses());
+    reset.addEventListener('mousedown', () => this.knn.clearAllClasses());
     reset.classList.add("btn", "btn-danger", "btn-block")
 
 
@@ -209,4 +208,6 @@ class Main {
   }
 }
 
-window.addEventListener('load', () => new Main());
+window.addEventListener('load', () => {
+  var app = new Main();
+  });

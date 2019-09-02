@@ -1,6 +1,5 @@
-const internalip = require('internal-ip');
-var ipAdd = internalip.v4.sync();
+const internalip = require('./server');
+const serverIP = internalip
 
-const WEB_ADDRESS = `https://${ipAdd}:3000`
-
-console.log(WEB_ADDRESS);
+console.log(serverIP);
+module.exports = serverIP;
